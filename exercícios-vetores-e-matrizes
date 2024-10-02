@@ -1,6 +1,4 @@
-//Exercícios: 
-//Vetores e Matrizes
-//Desafios:
+//Exercícios: Vetores e Matrizes //Desafios:
 
 //1) Crie um programa capaz de ler os dados de uma matriz quadrada de inteiros. Ao final da leitura o programa deverá imprimir o número da linha que contém o menor dentre todos os números lidos.
 
@@ -35,40 +33,116 @@ int main() {
 
     return 0;
 }
-
-
-//2) Faça um programa que preenche um vetor aleatoriamente com 10 inteioros, mas a saída deve ser um vetor com valores ordenados.
+=================================================================================================================================
+//2) Faça um programa que preenche um vetor aleatoriamente com 10 inteiros, mas a saída deve ser um vetor com valores ordenados.
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 int main() {
-    int vetor[10]; 
-    srand(time(NULL)); 
+    int vetor[10];
+    srand(time(NULL));
 
     for (int i = 0; i < 10; i++) {
-        vetor[i] = rand() % 100; // Gera números de 0 a 99
+        vetor[i] = rand() % 10 + 1;
     }
 
-    for (int i = 0; i < 9; i++) { // 9 porque vamos comparar com o próximo
-        for (int j = 0; j < 9 - i; j++) {
-            if (vetor[j] > vetor[j + 1]) { // Se o número atual é maior que o próximo
-                // Troca os números
-                int temp = vetor[j]; // Armazena o número atual
-                vetor[j] = vetor[j + 1]; // Coloca o próximo número na posição atual
-                vetor[j + 1] = temp; // Coloca o número armazenado na posição do próximo
+    printf("Vetor gerado:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("v[%d] = %d\n", i, vetor[i]);
+    }
+
+    for (int i = 0; i < 10 - 1; i++) {
+        for (int j = 0; j < 10 - 1 - i; j++) {
+            if (vetor[j] > vetor[j + 1]) {
+                int temp = vetor[j];
+                vetor[j] = vetor[j + 1];
+                vetor[j + 1] = temp;
             }
         }
     }
 
-    printf("Vetor ordenado:\n");
+    printf("\nVetor ordenado:\n");
     for (int i = 0; i < 10; i++) {
-        printf("%d ", vetor[i]); // Mostra cada número no vetor
+        printf("v[%d] = %d\n", i, vetor[i]);
     }
-    printf("\n");
 
-    return 0; 
+    return 0;
 }
+
+
+===============================================================================================================================
+//3) Leia uma matriz de 4 x 4 elementos. Preencha a matriz com dados aleatóreso e calcule a soma dos elementos que estao abaixo da diagonal principal. 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int matriz[4][4];
+    int soma = 0;
+    srand(time(NULL));
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            matriz[i][j] = rand() % 10;
+        }
+    }
+
+    printf("Matriz gerada:\n");
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (int i = 1; i < 4; i++) {
+        for (int j = 0; j < i; j++) {
+            soma += matriz[i][j];
+        }
+    }
+
+    printf("\nSoma dos elementos abaixo da diagonal principal: %d\n", soma);
+
+    return 0;
+}
+===============================================================================================================================
+4) Leia uma matriz de 4 x 4 elementos. Preencha a matriz com dados aleatóreso e e calcule a soma dos elementos que estao na diagonal principal.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int matriz[4][4];
+    int soma = 0;
+    srand(time(NULL));
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            matriz[i][j] = rand() % 10; 
+        }
+    }
+
+    printf("Matriz gerada:\n");
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < 4; i++) {
+        soma += matriz[i][i]; 
+    }
+
+    printf("\nSoma dos elementos na diagonal principal: %d\n", soma);
+
+    return 0;
+}
+===============================================================================================================================
+
 
   
