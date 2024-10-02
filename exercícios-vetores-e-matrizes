@@ -1,0 +1,74 @@
+//Exercícios: 
+//Vetores e Matrizes
+//Desafios:
+
+//1) Crie um programa capaz de ler os dados de uma matriz quadrada de inteiros. Ao final da leitura o programa deverá imprimir o número da linha que contém o menor dentre todos os números lidos.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("tamanho da matriz quadrada: ");
+    scanf("%d", &n);
+
+    int matriz[n][n];
+    printf("Digite os elementos:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    int menor = matriz[0][0];
+    int linhaMenor = 0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (matriz[i][j] < menor) {
+                menor = matriz[i][j];
+                linhaMenor = i;
+            }
+        }
+    }
+
+    printf("linha com menor numero: %d\n", linhaMenor + 1);
+
+    return 0;
+}
+
+
+//2) Faça um programa que preenche um vetor aleatoriamente com 10 inteioros, mas a saída deve ser um vetor com valores ordenados.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int vetor[10]; 
+    srand(time(NULL)); 
+
+    for (int i = 0; i < 10; i++) {
+        vetor[i] = rand() % 100; // Gera números de 0 a 99
+    }
+
+    for (int i = 0; i < 9; i++) { // 9 porque vamos comparar com o próximo
+        for (int j = 0; j < 9 - i; j++) {
+            if (vetor[j] > vetor[j + 1]) { // Se o número atual é maior que o próximo
+                // Troca os números
+                int temp = vetor[j]; // Armazena o número atual
+                vetor[j] = vetor[j + 1]; // Coloca o próximo número na posição atual
+                vetor[j + 1] = temp; // Coloca o número armazenado na posição do próximo
+            }
+        }
+    }
+
+    printf("Vetor ordenado:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", vetor[i]); // Mostra cada número no vetor
+    }
+    printf("\n");
+
+    return 0; 
+}
+
+  
